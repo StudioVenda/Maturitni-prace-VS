@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>Systém chytrého filtrování</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Sestav si návrh FPV dronu</h1>
+        <button id="theme-toggle">🌙 Tmavý režim</button>
+        <nav>
+            <ul class="menu" id="menu">
+                <li><a href="#" id="nav-components">Všechny komponenty</a></li>
+                <li><a href="#" id="nav-build">Uložená sestava</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <aside id="sidebar">
+        <h2>Kategorie</h2>
+        <ul>
+            <li><a href="#" class="category-link" data-category="all">Všechny komponenty</a></li>
+            <li><a href="#" class="category-link" data-category="Rámy">Rámy</a></li>
+            <li><a href="#" class="category-link" data-category="ESC">ESC (Regulátory otáček)</a></li>
+            <li><a href="#" class="category-link" data-category="Baterie">Baterie</a></li>
+            <li><a href="#" class="category-link" data-category="Motory">Motory</a></li>
+            <li><a href="#" class="category-link" data-category="Vrtule">Vrtule</a></li>
+            <li><a href="#" class="category-link" data-category="FC">FC (Řídící jednotky)</a></li>
+            <li><a href="#" class="category-link" data-category="PBD">PBD (Power Board Distribution)</a></li>
+            <li><a href="#" class="category-link" data-category="RX">Přijímače (RX)</a></li>
+            <li><a href="#" class="category-link" data-category="VTX">Vysílače (VTX)</a></li>
+            <li><a href="#" class="category-link" data-category="FPV kamery">FPV kamery</a></li>
+            <li><a href="#" class="category-link" data-category="FPV brýle">FPV brýle/monitory</a></li>
+        </ul>
+    </aside>
+
+    <main>
+        
+        <div id="filters-container">
+            <section id="filters">
+                <h2>Filtr motorů</h2>
+                <label for="motor-size">Velikost motoru:</label>
+                <select id="motor-size">
+                    <option value="all">Všechny</option>
+                    <option value="22xx">22xx</option>
+                    <option value="23xx">23xx</option>
+                    <option value="24xx">24xx</option>
+                </select>
+    
+                <label for="motor-kv">KV (otáčky na volt):</label>
+                <select id="motor-kv">
+                    <option value="all">Všechny</option>
+                    <option value="1700">1700 KV</option>
+                    <option value="2300">2300 KV</option>
+                    <option value="2500">2500 KV</option>
+                </select>
+    
+                <h2>Filtr baterií</h2>
+                <label for="battery-cells">Počet článků:</label>
+                <select id="battery-cells">
+                    <option value="all">Všechny</option>
+                    <option value="1S">1S</option>
+                    <option value="2S">2S</option>
+                    <option value="4S">4S</option>
+                    <option value="6S">6S</option>
+                </select>
+    
+                <label for="battery-capacity">Kapacita (mAh):</label>
+                <select id="battery-capacity">
+                    <option value="all">Všechny</option>
+                    <option value="850">850 mAh</option>
+                    <option value="1300">1300 mAh</option>
+                    <option value="1500">1500 mAh</option>
+                </select>
+    
+                <h2>Filtr ESC</h2>
+                <label for="esc-amp">Maximální proud (A):</label>
+                <select id="esc-amp">
+                    <option value="all">Všechny</option>
+                    <option value="20">20A</option>
+                    <option value="30">30A</option>
+                    <option value="35">35A</option>
+                    <option value="45">45A</option>
+                </select>
+    
+                <h2>Filtr rámů</h2>
+                <label for="frame-size">Velikost rámu:</label>
+                <select id="frame-size">
+                    <option value="all">Všechny</option>
+                    <option value="2.5">2.5"</option>
+                    <option value="3">3"</option>
+                    <option value="5">5"</option>
+                    <option value="7">7"</option>
+                </select>
+    
+                <h2>Filtr vrtulí</h2>
+                <label for="propeller-size">Velikost vrtulí:</label>
+                <select id="propeller-size">
+                    <option value="all">Všechny</option>
+                    <option value="2.5">2.5"</option>
+                    <option value="5">5"</option>
+                    <option value="7">7"</option>
+                </select>
+    
+                <button id="apply-filters">Použít filtr</button>
+            </section>
+        </div>
+
+        <section id="saved-build">
+            <h2>Moje sestava</h2>
+            <div id="saved-components">
+                <div class="saved-category" data-category="Rámy">
+                    <div class="category-header">
+                        <h3>Rámy</h3>
+                        <span class="category-total-price"></span>
+                    </div>
+                    <div class="saved-category-content"></div>
+                </div>
+
+                <div class="saved-category" data-category="ESC">
+                    <div class="category-header">
+                        <h3>ESC (Regulátory otáček)</h3>
+                        <span class="category-total-price"></span>
+                    </div>
+                    <div class="saved-category-content"></div>
+                </div>
+                           
+                <div class="saved-category" data-category="Baterie">
+                    <div class="category-header">
+                        <h3>Baterie</h3>
+                        <span class="category-total-price"></span>
+                    </div>
+                    <div class="saved-category-content"></div>
+                </div>
+
+                <div class="saved-category" data-category="Motory">
+                    <div class="category-header">
+                        <h3>Motory</h3>
+                        <span class="category-total-price"></span>
+                    </div>
+                    <div class="saved-category-content"></div>
+                </div>
+            
+                <div class="saved-category" data-category="Vrtule">
+                    <div class="category-header">
+                        <h3>Vrtule</h3>
+                        <span class="category-total-price"></span>
+                    </div>
+                    <div class="saved-category-content"></div>
+                </div>
+            
+                <div class="saved-category" data-category="FC">
+                    <div class="category-header">
+                        <h3>FC (Řídící jednotky)</h3>
+                        <span class="category-total-price"></span>
+                    </div>
+                    <div class="saved-category-content"></div>
+                </div>
+            
+                <div class="saved-category" data-category="PBD">
+                    <div class="category-header">
+                        <h3>PBD (Power Board Distribution)</h3>
+                        <span class="category-total-price"></span>
+                    </div>
+                    <div class="saved-category-content"></div>
+                </div>
+
+                <div class="saved-category" data-category="RX">
+                    <div class="category-header">
+                        <h3>Přijímače (RX)</h3>
+                        <span class="category-total-price"></span>
+                    </div>
+                    <div class="saved-category-content"></div>
+                </div>
+            
+                <div class="saved-category" data-category="VTX">
+                    <div class="category-header">
+                        <h3>Vysílače (VTX)</h3>
+                        <span class="category-total-price"></span>
+                    </div>
+                    <div class="saved-category-content"></div>
+                </div>
+            
+                <div class="saved-category" data-category="FPV kamery">
+                    <div class="category-header">
+                        <h3>FPV kamery</h3>
+                        <span class="category-total-price"></span>
+                    </div>
+                    <div class="saved-category-content"></div>
+                </div>
+            
+                <div class="saved-category" data-category="FPV brýle">
+                    <div class="category-header">
+                        <h3>FPV brýle/monitory</h3>
+                        <span class="category-total-price"></span>
+                    </div>
+                    <div class="saved-category-content"></div>
+                </div>
+            </div>
+            
+
+            <p id="total-price">Celková cena: 0 Kč</p>
+            <button id="clear-build">Vymazat sestavu</button>
+        </section>
+        
+        <section id="components">
+
+            <div class="component" data-category="Rámy" data-frame-size="2.5">
+                <img src="komponenty/Ramy/ram2_5.jpg" alt="Rám 2.5">
+                <h3>Rám 2.5"</h3>
+                <span class="price">Cena: 400 Kč</span>
+                <button class="add-to-build">Přidat do sestavy</button>
+            </div>
+            
+            <div class="component" data-category="Rámy" data-frame-size="5">
+                <img src="komponenty/Ramy/ram5.jpg" alt="Rám 5">
+                <h3>Rám 5"</h3>
+                <span class="price">Cena: 700 Kč</span>
+                <button class="add-to-build">Přidat do sestavy</button>
+            </div>
+            
+            <div class="component" data-category="Rámy" data-frame-size="7">
+                <img src="komponenty/Ramy/ram7.jpg" alt="Rám 7">
+                <h3>Rám 7"</h3>
+                <span class="price">Cena: 900 Kč</span>
+                <button class="add-to-build">Přidat do sestavy</button>
+            </div>
+            
+            
+            
+            <div class="component" data-category="ESC" data-amp="20">
+                <img src="komponenty/ESC/esc20a.jpg" alt="ESC 20A">
+                <h3>ESC 20A</h3>
+                <span class="price">Cena: 300 Kč</span>
+                <button class="add-to-build">Přidat do sestavy</button>
+            </div>
+            
+            <div class="component" data-category="ESC" data-amp="35">
+                <img src="komponenty/ESC/esc35a.jpg" alt="ESC 35A">
+                <h3>ESC 35A</h3>
+                <span class="price">Cena: 500 Kč</span>
+                <button class="add-to-build">Přidat do sestavy</button>
+            </div>
+            
+            <div class="component" data-category="ESC" data-amp="45">
+                <img src="komponenty/ESC/esc45a.jpg" alt="ESC 45A">
+                <h3>ESC 45A</h3>
+                <span class="price">Cena: 600 Kč</span>
+                <button class="add-to-build">Přidat do sestavy</button>
+            </div>
+
+
+
+            <div class="component" data-category="Baterie" data-cells="4S" data-capacity="850">
+                <img src="komponenty/Baterie/baterie4s850.jpg" alt="Baterie 4S 850mAh">
+                <h3>Baterie 4s 850mAh</h3>
+                <span class="price">Cena: 200 Kč</span>
+                <button class="add-to-build">Přidat do sestavy</button>
+            </div>
+            
+            <div class="component" data-category="Baterie" data-cells="6S" data-capacity="1500">
+                <img src="komponenty/Baterie/baterie6s1500.jpg" alt="Baterie 6S 1500mAh">
+                <h3>Baterie 6S 1500mAh</h3>
+                <span class="price">Cena: 500 Kč</span>
+                <button class="add-to-build">Přidat do sestavy</button>
+            </div>
+            
+            <div class="component" data-category="Baterie" data-cells="6S" data-capacity="3000">
+                <img src="komponenty/Baterie/baterie6s3000.jpg" alt="Baterie 6S 3000mAh">
+                <h3>Baterie 6S 3000mAh</h3>
+                <span class="price">Cena: 800 Kč</span>
+                <button class="add-to-build">Přidat do sestavy</button>
+            </div>
+            
+            
+            
+            <div class="component" data-category="Motory" data-size="11xx" data-kv="8500">
+                <img src="komponenty/Motory/motor11xx.jpg" alt="Motor 11xx">
+                <h3>Motor 1105</h3>
+                <span class="price">Cena: 250 Kč</span>
+                <button class="add-to-build">Přidat do sestavy</button>
+            </div>
+            
+            <div class="component" data-category="Motory" data-size="22xx" data-kv="1700">
+                <img src="komponenty/Motory/motor22xx.jpg" alt="Motor 22xx">
+                <h3>Motor 2207</h3>
+                <span class="price">Cena: 300 Kč</span>
+                <button class="add-to-build">Přidat do sestavy</button>
+            </div>
+            
+            <div class="component" data-category="Motory" data-size="28xx" data-kv="1200">
+                <img src="komponenty/Motory/motor28xx.jpg" alt="Motor 28xx">
+                <h3>Motor 2806.5</h3>
+                <span class="price">Cena: 450 Kč</span>
+                <button class="add-to-build">Přidat do sestavy</button>
+            </div>
+            
+            
+            
+            <div class="component" data-category="Vrtule" data-prop-size="2.5">
+                <img src="komponenty/Vrtule/vrtule2_5.jpg" alt="Vrtule 2.5">
+                <h3>Vrtule 2.5"</h3>
+                <span class="price">Cena: 50 Kč</span>
+                <button class="add-to-build">Přidat do sestavy</button>
+            </div>
+            
+            <div class="component" data-category="Vrtule" data-prop-size="5">
+                <img src="komponenty/Vrtule/vrtule5.jpg" alt="Vrtule 5">
+                <h3>Vrtule 5"</h3>
+                <span class="price">Cena: 100 Kč</span>
+                <button class="add-to-build">Přidat do sestavy</button>
+            </div>
+            
+            <div class="component" data-category="Vrtule" data-prop-size="7">
+                <img src="komponenty/Vrtule/vrtule7.jpg" alt="Vrtule 7">
+                <h3>Vrtule 7"</h3>
+                <span class="price">Cena: 150 Kč</span>
+                <button class="add-to-build">Přidat do sestavy</button>
+            </div>
+            
+            
+            
+            <div class="component" data-category="FC" data-type="F4">
+                <img src="komponenty/FC/SpeedyV3_FC.jpg" alt="Řídící jednotka F4">
+                <h3>SpeedyBee F405 V3 FC</h3>
+                <span class="price">Cena: 900 Kč</span>
+                <button class="add-to-build">Přidat do sestavy</button>
+            </div>
+            
+            <div class="component" data-category="FC" data-type="F4">
+                <img src="komponenty/FC/Mamba_FC.jpg" alt="Řídící jednotka F4">
+                <h3>Mamba FC</h3>
+                <span class="price">Cena: 1 600 Kč</span>
+                <button class="add-to-build">Přidat do sestavy</button>
+            </div>
+            
+            <div class="component" data-category="FC" data-type="F4">
+                <img src="komponenty/FC/SpeedyF7V3_FC.jpg" alt="Řídící jednotka F4">
+                <h3>SpeedyBee F7 V3 FC</h3>
+                <span class="price">Cena: 1 700 Kč</span>
+                <button class="add-to-build">Přidat do sestavy</button>
+            </div>
+            
+            
+            
+            
+            <div class="component" data-category="PBD" data-type="PDB">
+                <img src="komponenty/PBD/diatone_PBD.jpg" alt="Power Distribution Board">
+                <h3>Diatone PDB</h3>
+                <span class="price">Cena: 50 Kč</span>
+                <button class="add-to-build">Přidat do sestavy</button>
+            </div>
+            
+            <div class="component" data-category="PBD" data-type="PDB">
+                <img src="komponenty/PBD/matek_PBD.jpg" alt="Power Distribution Board">
+                <h3>Matek PBD</h3>
+                <span class="price">Cena: 300 Kč</span>
+                <button class="add-to-build">Přidat do sestavy</button>
+            </div>
+            
+            <div class="component" data-category="PBD" data-type="PDB">
+                <img src="komponenty/PBD/Flywoo_PBD.jpg" alt="Power Distribution Board">
+                <h3>Flywoo PBD</h3>
+                <span class="price">Cena: 1 400 Kč</span>
+                <button class="add-to-build">Přidat do sestavy</button>
+            </div>
+            
+            
+            
+            <div class="component" data-category="RX" data-protocol="FrSky">
+                <img src="komponenty/RX/rc_transmitter_frsky.jpg" alt="Přijímač FrSky">
+                <h3>FrSky Taranis X9D Plus</h3>
+                <span class="price">Cena: 5 500 Kč</span>
+                <button class="add-to-build">Přidat do sestavy</button>
+            </div>
+            
+            <div class="component" data-category="RX" data-protocol="Crossfire">
+                <img src="komponenty/RX/rc_transmitter_crossfire.jpg" alt="Přijímač Crossfire">
+                <h3>TBS Tango 2</h3>
+                <span class="price">Cena: 6 000 Kč</span>
+                <button class="add-to-build">Přidat do sestavy</button>
+            </div>      
+            
+            
+            <div class="component" data-category="VTX" data-type="analog" data-power="800mW">
+                <img src="komponenty/VTX/vtx_analog.jpg" alt="VTX Analog">
+                <h3>TBS Unify Pro 5G8 (Analog)</h3>
+                <span class="price">Cena: 1 000 Kč</span>
+                <button class="add-to-build">Přidat do sestavy</button>
+            </div>
+            
+            <div class="component" data-category="VTX" data-type="digital" data-power="1200mW">
+                <img src="komponenty/VTX/vtx_digital.jpg" alt="VTX Digital">
+                <h3>DJI Air Unit (Digital)</h3>
+                <span class="price">Cena: 5 500 Kč</span>
+                <button class="add-to-build">Přidat do sestavy</button>
+            </div>
+      
+            
+            <div class="component" data-category="FPV kamery" data-resolution="1080p" data-latency="20ms">
+                <img src="komponenty/Kamery/fpv_camera.jpg" alt="FPV Kamera">
+                <h3>Runcam Phoenix 2</h3>
+                <span class="price">Cena: 1 200 Kč</span>
+                <button class="add-to-build">Přidat do sestavy</button>
+            </div>
+            
+            <div class="component" data-category="FPV kamery" data-resolution="720p" data-latency="30ms">
+                <img src="komponenty/Kamery/fpv_camera_TBMC.jpg" alt="FPV Kamera">
+                <h3>Caddx Turbo Micro</h3>
+                <span class="price">Cena: 900 Kč</span>
+                <button class="add-to-build">Přidat do sestavy</button>
+            </div>
+            
+            
+            <div class="component" data-category="FPV brýle" data-type="analog" data-resolution="720p">
+                <img src="komponenty/Bryle/fpv_goggles_analog.jpg" alt="FPV Brýle">
+                <h3>Eachine EV800D (Analog)</h3>
+                <span class="price">Cena: 3 500 Kč</span>
+                <button class="add-to-build">Přidat do sestavy</button>
+            </div>
+            
+            <div class="component" data-category="FPV brýle" data-type="digital" data-resolution="1080p">
+                <img src="komponenty/Bryle/fpv_goggles_digital.png" alt="FPV Brýle">
+                <h3>DJI Goggles V2 (Digital)</h3>
+                <span class="price">Cena: 15 000 Kč</span>
+                <button class="add-to-build">Přidat do sestavy</button>
+            </div>
+            
+            
+        </section>
+    </main>
+
+    <div id="component-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <img id="modal-image" src="" alt="Komponent" />
+            <h3 id="modal-title"></h3>
+            <p id="modal-description"></p>
+            <p id="modal-price"></p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Systém chytrého filtrování. Všechna práva vyhrazena.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

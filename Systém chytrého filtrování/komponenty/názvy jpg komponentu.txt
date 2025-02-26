@@ -1,0 +1,36 @@
+ram2_5
+ram5
+ram7
+
+motor11xx
+motor22xx
+motor28xx
+
+vrtule2_5
+vrtule5
+vrtule7
+
+esc20a
+esc35a
+esc45a
+
+baterie4s850
+baterie6s1500
+baterie6s3000
+
+fpv_camera
+fpv_camera2
+
+fpv_goggles --- změna JPG --- fpv_goggles_digital
+fpv_goggles2  - fpv_goggles_analog
+
+rc_transmitter - rc_transmitter_frsky
+rc_transmitter2 - rc_transmitter_crossfire
+
+antenna		- antenna_video
+antenna2	- antenna_rc
+
+---změna--- vtx_analog
+---změna--- vtx_digital
+
+
