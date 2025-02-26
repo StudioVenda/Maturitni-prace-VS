@@ -4,7 +4,7 @@ Hlavní důvod proč jsem si toto téma vybral je to, že ne každý člověk kt
 
 V dnešní době ještě neexistuje žádné chytré filtrování komponent, které by mohl uživatel využít pro vybrání jakýchkoliv komponent pro to , aby ke konci byly mezi sebou kompatibilní.
 
-Mým cílem bylo vytvořit systém, který bude filtrovat komponenty pro stavbu FPV dronu tak, aby si uživatel vždy vybral komponenty takové, které budou bezproblémově kompatibilní a tím ušetří jak čekání na nové komponenty tak i ušetří zbytečné utracení peněz navíc.
+Mým cílem bylo vytvořit systém, který bude filtrovat komponenty pro stavbu FPV dronu tak, aby si uživatel vždy vybral komponenty takové, které budou bezproblémově kompatibilní a tím ušetří jak čekání na nové komponenty, tak i ušetří zbytečné utracení peněz navíc.
 
 ## Jak to funguje?
 
